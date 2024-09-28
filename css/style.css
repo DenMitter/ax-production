@@ -15,7 +15,7 @@ time, mark, audio, video {margin: 0; padding: 0; border: 0; font-size: 100%; fon
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {display: block;}
 html {height: 100%;}
-body {line-height: 1;font-family: "Raleway", sans-serif;}
+body {line-height: 1;font-family: "Raleway", sans-serif;background-color: black;}
 ol, ul {list-style: none;}
 blockquote, q {quotes: none;}
 blockquote:before, blockquote:after,
@@ -25,11 +25,13 @@ table {border-collapse: collapse; border-spacing: 0;}
 .logo {
     width: 155px;
 }
+.test {
+    height: 1350px;
+}
 /* ~~~~~~~~~~~~~~~~~ Header ~~~~~~~~~~~~~~~~~~ */
 header {
     background-color: #0d2654;
     height: 64px;
-    position: fixed;
     width: 100%;
 }
 nav {
@@ -50,10 +52,124 @@ nav ul li a {
     font-weight: 700;
 }
 /* ~~~~~~~~~~~~~~~~~~ Main ~~~~~~~~~~~~~~~~~~~ */
+
 main {
     background-color: black;
+    position: relative;
+    overflow: hidden;
+
+    user-select: none;
+    -webkit-user-select: none; /* Для Safari */
+    -moz-user-select: none; /* Для старих версій Firefox */
+    -ms-user-select: none; /* Для старих версій IE */
+
+    pointer-events: none; /* За потреби */
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    /* user-drag: none; */
 }
+
 .main-image {
     width: 100%;
     transition: opacity 0.3s ease-out;
+}
+
+.home-hero-parallax {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100vh;
+    /* overflow: hidden; */
+}
+
+.clouds {
+    position: absolute;
+    opacity: 1; /* Початкова повна непрозорість */
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Додаємо плавність для прозорості */
+    will-change: transform, opacity; /* Оптимізація продуктивності */
+}
+
+/* Індивідуальні позиції для кожної хмари */
+.cloud-a {
+    top: 21%;
+    right: -7%;
+    width: 730px; /* Можна змінювати розмір */
+}
+
+.cloud-b {
+    top: 0%;
+    right: -3%;
+    width: 880px;
+}
+
+.cloud-c {
+    top: 0%;
+    left: -10%;
+    width: 741px;
+    z-index: 3;
+}
+
+.cloud-d {
+    top: 48%;
+    right: 14%;
+    width: 810px;
+    z-index: 3;
+}
+
+.cloud-e {
+    top: 12%;
+    left: -12%;
+    width: 1130px;
+}
+
+.cloud-f {
+    top: 30%;
+    right: 45%;
+    width: 710px;
+}
+
+.cloud-g {
+    top: 65%;
+    left: 0%;
+    width: 840px;
+}
+
+.cloud-h {
+    z-index: 3;
+    top: 49%;
+    right: 35%;
+    width: 700px;
+}
+
+.rocket {
+    width: 310px;
+    display: block;
+}
+
+.blastoff {
+    position: absolute;
+    bottom: -3%; /* Початкове положення ракети за межами екрану */
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    transition: transform 0.3s ease-out;
+    /* Забезпечує плавні трансформації */
+    -webkit-transform: translateX(-50%) translateY(0);
+    -moz-transform: translateX(-50%) translateY(0);
+    -ms-transform: translateX(-50%) translateY(0);
+    -o-transform: translateX(-50%) translateY(0);
+    z-index: 2; /* Забезпечує, що ракета над хмарами */
+}
+
+.plummage {
+    position: absolute;
+    top: 100%; /* Розміщує plummage безпосередньо під ракетою */
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+    transform-origin: top center;
+    transition: transform 0.3s ease-out;
+    width: 24.4368%;
+    z-index: 1; /* Під ракетою */
 }
