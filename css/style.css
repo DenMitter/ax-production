@@ -15,31 +15,95 @@ time, mark, audio, video {margin: 0; padding: 0; border: 0; font-size: 100%; fon
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {display: block;}
 html {height: 100%;}
-body {line-height: 1;font-family: "Raleway", sans-serif;background-color: black;}
+body {line-height: 1;font-family: "Raleway", sans-serif;background-color: black;color: white;}
 ol, ul {list-style: none;}
 blockquote, q {quotes: none;}
 blockquote:before, blockquote:after,
 q:before, q:after {content: ''; content: none;}
 table {border-collapse: collapse; border-spacing: 0;}
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+:root {
+    --clr-primary: #7ac7c7;
+    --clr-primary-light:rgb(150, 233, 233);
+}
+
+/* Зміна кольору тексту та фону при виділенні */
+::selection {
+    background-color: var(--clr-primary); /* Колір фону */
+    color: #FFFFFF; /* Колір тексту */
+}
+
+/* Для старих версій браузерів */
+::-moz-selection {
+    background-color: var(--clr-primary); /* Колір фону для Firefox */
+    color: #FFFFFF; /* Колір тексту для Firefox */
+}
+
 .logo {
     width: 155px;
 }
-.test {
-    height: 1350px;
+.container {
+    max-width: 59%;
+    margin: 0 auto;
+}
+
+.button {
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    padding: 12px 16px;
+    background-color: var(--clr-primary);
+    color: black;
+    display: block;
+    transition: 0.2s;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+}
+.button:hover {
+    background-color: var(--clr-primary-light);
+}
+
+.title {
+    font-size: 3.33rem;
+    /* line-height: 1.53rem; */
+    font-family: "Jura", sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 1.33rem !important;
+}
+
+h3 {
+    font-size: 1.10rem !important;
+    font-weight: 500 !important;
+}
+
+p {
+    font-size: 1.33rem;
+    line-height: 2rem;
+    margin: 0 0 2rem 0;
 }
 /* ~~~~~~~~~~~~~~~~~ Header ~~~~~~~~~~~~~~~~~~ */
 header {
     background-color: #0d2654;
     height: 64px;
     width: 100%;
+    position: fixed;
+    z-index: 5;
 }
 nav {
     display: flex;
-    width: 59%;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto;
 }
 nav ul {
     display: flex;
@@ -52,7 +116,6 @@ nav ul li a {
     font-weight: 700;
 }
 /* ~~~~~~~~~~~~~~~~~~ Main ~~~~~~~~~~~~~~~~~~~ */
-
 main {
     background-color: black;
     position: relative;
@@ -172,4 +235,79 @@ main {
     transition: transform 0.3s ease-out;
     width: 24.4368%;
     z-index: 1; /* Під ракетою */
+}
+/* ~~~~~~~~~~~~~~~~ Services ~~~~~~~~~~~~~~~~~ */
+.services {
+    margin-top: 65px;
+}
+.services .container {
+    display: flex;
+    justify-content: space-between;
+    gap: 41px;
+}
+.services-description {
+    width: 49%;
+}
+/* ~~~~~~~~~~~~~~~~ Accordion ~~~~~~~~~~~~~~~~ */
+.accordion .title {
+    margin-bottom: 21px;
+}
+
+.accordion-item__title {
+    color: var(--clr-primary);
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.accordion-description {
+    max-height: 0; /* Сховати опис за замовчуванням */
+    overflow: hidden; /* Сховати вміст, який перевищує max-height */
+    transition: max-height 0.3s ease, opacity 0.3s ease; /* Плавний перехід для max-height та opacity */
+    opacity: 0; /* Сховати опис */
+}
+
+.accordion-description.open {
+    max-height: 1000px; /* Висота, яка дозволить опису повністю відкритися */
+    opacity: 1; /* Показати опис */
+    margin-bottom: 21px;
+}
+
+.accordion-description p {
+    font-size: 1rem !important;
+}
+
+.plus-minus-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.plus-minus-toggle::before,
+.plus-minus-toggle::after {
+    content: '';
+    width: 2px;
+    height: 14px;
+    background-color: white;
+    transition: transform 0.3s ease;
+    -webkit-transition: transform 0.3s ease;
+    -moz-transition: transform 0.3s ease;
+    -ms-transition: transform 0.3s ease;
+    -o-transition: transform 0.3s ease;
+}
+/* Відкритий стан - плюс */
+.plus-minus-toggle::after {
+    translate: -2px;
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+}
+/* Закритий стан - мінус */
+.plus-minus-toggle.active::before {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
 }

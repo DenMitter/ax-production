@@ -50,3 +50,29 @@ window.addEventListener('scroll', () => {
         ticking = true;
     }
 });
+
+
+// Отримуємо всі заголовки аккордіону
+const accordionTitles = document.querySelectorAll('.accordion-item__title');
+
+accordionTitles.forEach(title => {
+    title.addEventListener('click', () => {
+        // Знаходимо опис, пов'язаний із заголовком
+        const description = title.nextElementSibling;
+
+        // Переключаємо клас 'active' для заголовка
+        title.querySelector('.plus-minus-toggle').classList.toggle('active');
+
+        // Переключаємо видимість опису
+        description.classList.toggle('open');
+
+        // Закриваємо інші елементи аккордіону
+        accordionTitles.forEach(otherTitle => {
+            if (otherTitle !== title) {
+                const otherDescription = otherTitle.nextElementSibling;
+                otherDescription.classList.remove('open'); // Скидаємо клас 'open'
+                otherTitle.querySelector('.plus-minus-toggle').classList.remove('active'); // Скидаємо активний стан
+            }
+        });
+    });
+});
