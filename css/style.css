@@ -49,3 +49,11 @@ nav ul li a {
     text-decoration: none;
     font-weight: 700;
 }
+/* ~~~~~~~~~~~~~~~~~~ Main ~~~~~~~~~~~~~~~~~~~ */
+main {
+    background-color: black;
+}
+.main-image {
+    width: 100%;
+    transition: opacity 0.3s ease-out;
+}
